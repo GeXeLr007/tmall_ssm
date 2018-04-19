@@ -7,7 +7,34 @@
     <select id="list" resultType="Category">
         select *
         from category
-        ORDER BY id desc;
+        ORDER BY id ASC 
+        <if test="start!=null and count!=null">
+            limit #{start},#{count}
+        </if>
     </select>
+    
+    <select id="total" resultType="java.lang.Integer">
+        select count(*)
+        from category;
+    </select>
+    
+    <insert id="add" keyProperty="id" useGeneratedKeys="true" parameterType="Category">
+        insert into category (name) values (#{name});
+    </insert>
+    
+    <delete id="delete" parameterType="integer">
+        DELETE FROM category WHERE id=#{id};
+    </delete>
+    
+    <select id="get" parameterType="integer" resultType="Category">
+        select *
+        from category WHERE id=#{id};
+    </select>
+    
+    <update id="update" parameterType="Category">
+        update category
+        set name = #{name}
+            where id=#{id};
+    </update>
     
 </mapper>
