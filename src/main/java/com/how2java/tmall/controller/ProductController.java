@@ -4,7 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.how2java.tmall.pojo.Category;
 import com.how2java.tmall.pojo.Product;
+import com.how2java.tmall.pojo.ProductImage;
 import com.how2java.tmall.service.CategoryService;
+import com.how2java.tmall.service.ProductImageService;
 import com.how2java.tmall.service.ProductService;
 import com.how2java.tmall.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class ProductController {
     ProductService productService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    ProductImageService productImageService;
 
     @RequestMapping("admin_product_add")
     public String add(Product product) {
@@ -33,8 +37,6 @@ public class ProductController {
     @RequestMapping("admin_product_edit")
     public String edit(Integer id, Model model) {
         Product product = productService.get(id);
-        Category category = categoryService.get(product.getCid());
-        product.setCategory(category);
         model.addAttribute("p", product);
         return "admin/editProduct";
     }
@@ -55,11 +57,17 @@ public class ProductController {
     @RequestMapping("admin_product_list")
     public String list(Integer cid, Model model, Page page) {
         PageHelper.offsetPage(page.getStart(), page.getCount());
-        List<Product> list = productService.list(cid);
-        int total = (int) new PageInfo<>(list).getTotal();
+        List<Product> products = productService.list(cid);
+        int total = (int) new PageInfo<>(products).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + cid);
-        model.addAttribute("ps", list);
+        
+//        为每一个product对象设置firstProductImage属性
+        for (Product product:products
+             ) {
+            productService.setFirstProductImage(product);
+        }
+        model.addAttribute("ps", products);
         Category category = categoryService.get(cid);
         model.addAttribute("c", category);
         model.addAttribute("page", page);
