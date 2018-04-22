@@ -98,9 +98,9 @@ div.carouselBackgroundDiv{
 	background-color: #E8E8E8;
 	position: absolute;
 	top:36px;
-	
+
 	z-index:-1;
-	
+
 }
 
 div.categoryWithCarousel div.headbar {
@@ -330,7 +330,6 @@ div.footer {
 	margin: 0px 0px;
 	border-top-style: solid;
 	border-top-width: 1px;
-	border-top-color: solid;
 	border-top-color: #e7e7e7;
 }
 
@@ -340,12 +339,16 @@ div.footer_ensure {
 	text-align: center;
 }
 
-div.footer_desc {
+div.horizontal_line{
 	border-top-style: solid;
 	border-top-width: 1px;
 	border-top-color: #e7e7e7;
+}
+
+div.footer_desc {
 	padding-top: 30px;
-	margin: 0px 20px;
+	margin: 20px auto;
+	max-width:1024px;
 }
 
 div.footer div.copyright div.white_link a {
@@ -357,6 +360,7 @@ div.footer div.copyright div.white_link {
 	padding: 10px 0px;
 	margin-left: 10px;
 }
+
 
 div.footer_desc div.descColumn {
 	width: 20%;
@@ -379,12 +383,26 @@ div.copyright {
 	background-color: black;
 	border-top-style: solid;
 	border-top-width: 2px;
-	border-top-color: solid;
+	/*border-top-color: solid;*/
 	border-top-color: #C40000;
+	margin-top:20px;
+
+
+}
+
+div.coptyrightMiddle{
+	 width:1024px;
+	 margin:0px auto;
+	 text-align:left;
+	 position:relative;
 }
 
 img.cateye {
 	margin-left: 20px;
+	display:block;
+	position:absolute;
+	top:-33px;
+	left:-15px;
 }
 
 div.copyright span.slash {
@@ -603,7 +621,7 @@ div.productUnit span.productReview {
 div.productUnit a.productLink {
 	margin: 10px 0px;
 	color: #333333;
-	font: 0.8em;
+	/*font: 0.8em;*/
 	display: block;
 }
 
@@ -615,7 +633,7 @@ div.productUnit a.productLink:hover {
 div.productUnit a.tmallLink {
 	margin: 10px 0px;
 	color: #999999;
-	font: 0.8em;
+	/*font: 0.8em;*/
 	display: block;
 	text-decoration: underline;
 }
@@ -1007,7 +1025,8 @@ span.productReviewTopReviewLinkNumber {
 }
 
 div.productDetailImagesPart img {
-	display: block; margin 20px 0px;
+	display: block; 
+    margin: 20px 0px;
 	width: 790px;
 }
 
@@ -1039,7 +1058,7 @@ div.productReviewItem div.productReviewItemUserInfo {
 
 div.productReviewItemContent {
 	/* 	margin:0px 0px -30px 0px; */
-	
+
 }
 
 div.productReviewItemDate {
@@ -1300,13 +1319,13 @@ textarea.leaveMessageTextarea {
 }
 
 span.leaveMessageText {
-	display: inilne-block;
+	display: inline-block;
 	margin-right: 10px;
 	float: left;
 }
 
 span.leaveMessageTextareaSpan {
-	display: inilne-block;
+	display: inline-block;
 }
 
 div.orderItemTotalSumDiv {
@@ -1367,7 +1386,7 @@ span.confirmMoney {
 img.aliPayImg {
 	/* 	width:230px; */
 	/* 	height:230px;	 */
-	
+
 }
 
 button.confirmPay {
@@ -1592,7 +1611,7 @@ div.cartFoot button {
 	background-color: #AAAAAA;
 	border: 0px solid #AAAAAA;
 	color: white;
-	height: height%;
+	/*height: height;*/
 	width: 120px;
 	height: 50px;
 	font-size: 20px;
@@ -2166,7 +2185,7 @@ table.registerTable button {
 }
 
 table.registerTable {
-	
+
 }
 
 div.registerSuccessDiv {
@@ -2273,5 +2292,5 @@ table.cartProductTable th.selectAndImage{
 }
 
 table td{
-	font-size:12px;	
+	font-size:12px;
 }

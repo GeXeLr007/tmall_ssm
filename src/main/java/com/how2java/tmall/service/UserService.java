@@ -16,4 +16,6 @@ public interface UserService {
 
     List<User> list();
 
+    boolean isExist(String name);
+
 }

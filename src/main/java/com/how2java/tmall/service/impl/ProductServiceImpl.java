@@ -11,6 +11,7 @@ import com.how2java.tmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void setFirstProductImage(Product product) {
         List<ProductImage> productImages = productImageService.list(product.getId(), ProductImageService.type_single);
-        if (!productImages.isEmpty()){
+        if (!productImages.isEmpty()) {
             ProductImage productImage = productImages.get(0);
             product.setFirstProductImage(productImage);
         }
@@ -70,9 +71,41 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void setFirstProductImage(List<Product> products) {
-        for (Product product:
-             products) {
+        for (Product product :
+                products) {
             setFirstProductImage(product);
+        }
+    }
+
+    @Override
+    public void fill(Category category) {
+        List<Product> products = list(category.getId());
+        category.setProducts(products);
+    }
+
+    @Override
+    public void fill(List<Category> categories) {
+        for (Category category :
+                categories) {
+            fill(category);
+        }
+    }
+
+    @Override
+    public void fillByRow(List<Category> categories) {
+        int productNumberEachRow = 8;
+        for (Category category :
+                categories) {
+            List<Product> products = category.getProducts();
+            int size = products.size();
+            List<List<Product>> productsByRow = new ArrayList<>();
+            for (int i = 0; i < size; i += productNumberEachRow) {
+//                若i+productNumberEachRow大于等于size，则已经到达最后几个Product。
+                int end = i + productNumberEachRow > size ? size : i + productNumberEachRow;
+                List<Product> subList = products.subList(i, end);
+                productsByRow.add(subList);
+            }
+            category.setProductsByRow(productsByRow);
         }
     }
 
