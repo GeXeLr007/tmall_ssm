@@ -1,6 +1,7 @@
 package com.how2java.tmall.service;
 
 import com.how2java.tmall.pojo.Order;
+import com.how2java.tmall.pojo.OrderItem;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface OrderService {
 
     List<Order> list();
 
+    float add(Order o,List<OrderItem> ois);
+
+    List list(int uid, String excludedStatus);
 }

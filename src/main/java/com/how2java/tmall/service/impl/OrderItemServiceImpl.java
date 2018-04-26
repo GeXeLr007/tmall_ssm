@@ -32,7 +32,9 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public OrderItem get(int id) {
-        return orderItemMapper.selectByPrimaryKey(id);
+        OrderItem orderItem = orderItemMapper.selectByPrimaryKey(id);
+        setProduct(orderItem);
+        return orderItem;
     }
 
     @Override
@@ -70,6 +72,27 @@ public class OrderItemServiceImpl implements OrderItemService {
         order.setTotalNumber(totalNumber);
         order.setOrderItems(orderItems);
 
+    }
+
+    @Override
+    public int getSaleCount(int pid) {
+        OrderItemExample example =new OrderItemExample();
+        example.createCriteria().andPidEqualTo(pid);
+        List<OrderItem> ois =orderItemMapper.selectByExample(example);
+        int result =0;
+        for (OrderItem oi : ois) {
+            result+=oi.getNumber();
+        }
+        return result;
+    }
+
+    @Override
+    public List<OrderItem> listByUser(Integer uid) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.createCriteria().andUidEqualTo(uid).andOidIsNull();
+        List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+        setProduct(orderItems);
+        return orderItems;
     }
 
     private void setProduct(List<OrderItem> orderItems) {

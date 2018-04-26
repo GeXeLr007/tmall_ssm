@@ -18,12 +18,18 @@ public interface ProductService {
     List<Product> list(Integer cid);
 
     void setFirstProductImage(Product product);
-    
+
     void setFirstProductImage(List<Product> products);
-    
+
     void fill(Category category);
-    
+
     void fill(List<Category> categories);
-    
+
     void fillByRow(List<Category> categories);
+
+    void setSaleAndReviewNumber(Product p);
+
+    void setSaleAndReviewNumber(List<Product> ps);
+    
+    List<Product> search(String keyword);
 }

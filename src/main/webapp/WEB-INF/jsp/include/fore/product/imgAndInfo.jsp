@@ -121,18 +121,19 @@ $(function(){
         var bigImageURL = $(this).attr("bigImageURL");
         $("img.bigImg").attr("src",bigImageURL);
     });
-     
+
     $("img.bigImg").load(
         function(){
             $("img.smallImage").each(function(){
                 var bigImageURL = $(this).attr("bigImageURL");
                 img = new Image();
                 img.src = bigImageURL;
-                 
+
                 img.onload = function(){
+                    console.log(bigImageURL);
                     $("div.img4load").append($(img));
                 };
-            });     
+            });
         }
     );
 });

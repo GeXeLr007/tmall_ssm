@@ -38,7 +38,6 @@ public class OrderController {
     
     @RequestMapping("admin_order_delivery")
     public String delivery(Order order){
-//        Order order = orderService.get(oid);
 //        设置发货时间为当前时间，改变订单状态为等待确认
         order.setDeliveryDate(new Date());
         order.setStatus(OrderService.waitConfirm);
