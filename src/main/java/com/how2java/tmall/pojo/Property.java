@@ -6,7 +6,7 @@ public class Property {
     private Integer cid;
 
     private String name;
-
+    /*非数据库字段*/
     private Category category;
 
     public Category getCategory() {

@@ -275,7 +275,7 @@ public class ForeController {
             orderItems.add(orderItem);
             total += orderItem.getNumber() * orderItem.getProduct().getPromotePrice();
         }
-//        model.addAttribute("ois", orderItems);
+//        model.addAttribute("ois", orderItems);  在model中添加数据相当于在request域中添加数据
 //        必须在session域中保存该属性，才能生成订单成功
         session.setAttribute("ois", orderItems);  
         model.addAttribute("total", total);
