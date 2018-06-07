@@ -261,7 +261,6 @@ public class ForeController {
         User user = (User) session.getAttribute("user");
         List<OrderItem> ois = orderItemService.listByUser(user.getId());
         model.addAttribute("ois", ois);
-//        
         return "fore/cart";
     }
 
@@ -358,8 +357,8 @@ public class ForeController {
         return "fore/review";
     }
 
-    @RequestMapping("foredoreview")
-    public String doreview( Model model,HttpSession session,@RequestParam("oid") int oid,@RequestParam("pid") int pid,String content) {
+    @RequestMapping("foreoverview")
+    public String overview( Model model,HttpSession session,@RequestParam("oid") int oid,@RequestParam("pid") int pid,String content) {
         Order o = orderService.get(oid);
         o.setStatus(OrderService.finish);
         orderService.update(o);
